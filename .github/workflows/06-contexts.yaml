@@ -13,8 +13,9 @@ env:
 jobs:
     echo-data:
         runs-on: ubuntu-latest
-        MY_JOB_VAR: 'job'
-        MY_OVERWRITTEN_VAR: 'job'
+        env:
+            MY_JOB_VAR: 'job'
+            MY_OVERWRITTEN_VAR: 'job'
         steps:
             - name: Display information
               run: |
