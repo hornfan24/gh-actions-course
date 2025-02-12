@@ -8,8 +8,9 @@ env:
 jobs:
     echo:
         runs-on: ubuntu-latest
-        JOB_VAR: 'I am a job env var'
-        OVERWRITTEN: 'I have been overwritten at the job level'
+        env:
+            JOB_VAR: 'I am a job env var'
+            OVERWRITTEN: 'I have been overwritten at the job level'
         steps:
             - name: Print Env Variables
               env:
