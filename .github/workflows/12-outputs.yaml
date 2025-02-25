@@ -13,11 +13,10 @@ env:
             
 jobs:
     build:
-        env:
-            myVar2: "Hello from job"
         runs-on: ubuntu-latest
         outputs:
             build-status: ${{ steps.build.outputs.status }}
+            password: "this is a password"
         steps:
             - name: Print GITHUB_OUTPUT path
               run: echo "$GITHUB_OUTPUT"
@@ -28,7 +27,7 @@ jobs:
                 echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
                 echo "output1=value1" >> "$GITHUB_OUTPUT"
                 echo "output2=value2" >> "$GITHUB_OUTPUT"
-                echo "env=$myVar2" >> "$GITHUB_OUTPUT"
+                echo "password=new password" >> "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
     deploy:
         runs-on: ubuntu-latest
@@ -47,6 +46,5 @@ jobs:
                 echo "Build Status: ${{ needs.build.outputs.build-status }}"
                 echo "Output1: ${{ needs.build.outputs.output1 }}"
                 echo "Output2: ${{ needs.build.outputs.output2 }}"
-                echo "Env: $myVar"
-                echo "Ref Env: ${{ env.myVar }}"
-                echo "Ref build job: ${{ env.build.myVar2 }}"
+                echo "Password: ${{ needs.build.outputs.password }}"
+
