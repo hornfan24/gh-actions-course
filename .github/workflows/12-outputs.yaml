@@ -7,6 +7,9 @@ on:
                 options: ['success', 'failure']
                 default: 'success'
                 description: 'Status of the build'
+
+env:
+    myVar: "Hello from env"
             
 jobs:
     build:
@@ -16,6 +19,8 @@ jobs:
         steps:
             - name: Print GITHUB_OUTPUT path
               run: echo "$GITHUB_OUTPUT"
+            - name: SetEnv
+              run: echo "myVar=Hello from step" >> $GITHUB_ENV
             - name: Build
               id: build
               run: |
@@ -23,6 +28,7 @@ jobs:
                 echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
                 echo "output1=value1" >> "$GITHUB_OUTPUT"
                 echo "output2=value2" >> "$GITHUB_OUTPUT"
+                echo "env=$myVar" >> "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
     deploy:
         runs-on: ubuntu-latest
@@ -38,6 +44,6 @@ jobs:
             - name: Echo test
               run: |
                 echo "Output from build job"
-                echo "${{ needs.build.outputs.build-status }}"
-                echo "${{ needs.build.outputs.output1 }}"
-                echo "${{ needs.build.outputs.output2 }}"
+                echo "Build Status: ${{ needs.build.outputs.build-status }}"
+                echo "Output1: ${{ needs.build.outputs.output1 }}"
+                echo "Output2: ${{ needs.build.outputs.output2 }}"
