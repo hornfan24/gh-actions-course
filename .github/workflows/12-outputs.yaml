@@ -16,7 +16,7 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
             build-status: ${{ steps.build.outputs.status }}
-            password: ${{ steps.build.outputs.password }}
+            mypassword: ${{ steps.build.outputs.password }}
             output1: ${{ steps.build.outputs.output1 }}
             output2: ${{ steps.build.outputs.output2 }}
         steps:
@@ -25,11 +25,13 @@ jobs:
             - name: Build
               id: build
               run: |
+                mypassword="old password"
+                echo "current password=$mypassword"
                 echo "$GITHUB_OUTPUT"  
                 echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
                 echo "output1=value1" >> "$GITHUB_OUTPUT"
                 echo "output2=value2" >> "$GITHUB_OUTPUT"
-                echo "password=new password" >> "$GITHUB_OUTPUT"
+                echo "mypassword=new password" >> "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
     deploy:
         runs-on: ubuntu-latest
