@@ -22,11 +22,6 @@ jobs:
         steps:
             - name: Print GITHUB_OUTPUT path
               run: echo "$GITHUB_OUTPUT"
-            - name: Override env variables
-              run: |
-                echo "myVar=$myVar"
-                $myVar="Hello from step"
-                echo "myVar=$myVar"
             - name: Build
               id: build
               run: |
@@ -58,5 +53,4 @@ jobs:
                 echo "Output2: ${{ needs.build.outputs.output2 }}"
                 echo "mykey: ${{ needs.build.outputs.mykey }}"
                 echo "Build Status: ${{ needs.build.outputs.build-status }}"
-                echo "myVar: ${{ env.myVar }}"
 
