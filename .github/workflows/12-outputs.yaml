@@ -16,7 +16,7 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
             build-status: ${{ steps.build.outputs.status }}
-            mykey: ${{ steps.build.outputs.password }}
+            mykey: ${{ steps.build.outputs.mykey }}
             output1: ${{ steps.build.outputs.output1 }}
             output2: ${{ steps.build.outputs.output2 }}
         steps:
