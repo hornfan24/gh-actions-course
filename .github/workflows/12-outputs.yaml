@@ -25,7 +25,7 @@ jobs:
             - name: Override env variables
               run: |
                 echo "myVar=$myVar"
-                myVar="Hello from step"
+                $myVar="Hello from step"
                 echo "myVar=$myVar"
             - name: Build
               id: build
