@@ -13,14 +13,14 @@ env:
             
 jobs:
     build:
+        env:
+            myVar: "Hello from job"
         runs-on: ubuntu-latest
         outputs:
             build-status: ${{ steps.build.outputs.status }}
         steps:
             - name: Print GITHUB_OUTPUT path
               run: echo "$GITHUB_OUTPUT"
-            - name: SetEnv
-              run: echo "myVar=Hello from step" >> $GITHUB_ENV
             - name: Build
               id: build
               run: |
