@@ -47,3 +47,6 @@ jobs:
                 echo "Build Status: ${{ needs.build.outputs.build-status }}"
                 echo "Output1: ${{ needs.build.outputs.output1 }}"
                 echo "Output2: ${{ needs.build.outputs.output2 }}"
+                echo "Env: $myVar"
+                echo "Ref Env: ${{ env.myVar }}"
+                echo "Ref build job: " ${{ needs.build.myVar}}
