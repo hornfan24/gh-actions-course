@@ -49,4 +49,4 @@ jobs:
                 echo "Output2: ${{ needs.build.outputs.output2 }}"
                 echo "Env: $myVar"
                 echo "Ref Env: ${{ env.myVar }}"
-                echo "Ref build job: " ${{ env.build.myVar2}}
+                echo "Ref build job: ${{ env.build.myVar2 }}"
