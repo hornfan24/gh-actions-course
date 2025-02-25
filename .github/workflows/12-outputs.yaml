@@ -14,7 +14,7 @@ env:
 jobs:
     build:
         env:
-            myVar: "Hello from job"
+            myVar2: "Hello from job"
         runs-on: ubuntu-latest
         outputs:
             build-status: ${{ steps.build.outputs.status }}
@@ -28,7 +28,7 @@ jobs:
                 echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
                 echo "output1=value1" >> "$GITHUB_OUTPUT"
                 echo "output2=value2" >> "$GITHUB_OUTPUT"
-                echo "env=$myVar" >> "$GITHUB_OUTPUT"
+                echo "env=$myVar2" >> "$GITHUB_OUTPUT"
                 cat "$GITHUB_OUTPUT"
     deploy:
         runs-on: ubuntu-latest
@@ -49,4 +49,4 @@ jobs:
                 echo "Output2: ${{ needs.build.outputs.output2 }}"
                 echo "Env: $myVar"
                 echo "Ref Env: ${{ env.myVar }}"
-                echo "Ref build job: " ${{ env.build.myVar}}
+                echo "Ref build job: " ${{ env.build.myVar2}}
