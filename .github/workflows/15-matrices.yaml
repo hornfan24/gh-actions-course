@@ -30,7 +30,7 @@ jobs:
       run: exit 1
     - name: Perform some tests
       run: |
-        echo "Running tests on OS ${{ matrix.os }} with NodeJS ${{ matrix.node-version }}"
+        echo "Running tests on OS ${{ matrix.os }} with NodeJS ${{ matrix.node-version }}-${{ matrix.opacity}}"
         sleep 10
     - name: Upload test results
       run: echo "Test results uploaded"
@@ -43,9 +43,10 @@ jobs:
         shape: [circle, square]
         size: [small, large]
         include: 
+          - opacity: 50
           - color: red
             shape: triangle
     steps:
     - name: Dummy step
-      run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}"
+      run: echo "${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }}"
       
