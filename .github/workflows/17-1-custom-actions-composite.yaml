@@ -12,9 +12,6 @@ jobs:
       run:
         working-directory: ${{ env.working-directory }}
     steps:
-      - name: Dummy Step
-        run: |
-          echo "curent working directory: ${{ env.working-directory }}"
       - uses: actions/checkout@v4
       - name: Setup Node and NPM Dependencies
         uses: ./.github/actions/composite-cache-deps
