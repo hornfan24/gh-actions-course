@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 env:
-  working-directory: ${{ env.working-directory }}
+  working-directory: 17-custom-actions-composite/react-app
 
 jobs:
   build:
