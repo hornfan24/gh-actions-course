@@ -17,6 +17,7 @@ runs:
       run: |
         echo "Working Directory - ${{ inputs.working-dir }}"
         echo "Node Version - ${{ inputs.node-version }}"
+      shell: bash
     - name: Setup NodeJS version ${{ inputs.node-version }}
       uses: actions/setup-node@v3
       with:
