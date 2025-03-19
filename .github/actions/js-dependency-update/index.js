@@ -34,9 +34,9 @@ async function run() {
         return;
     }
 
-    core.info('[js-dependency-update] : base branch is ${{ baseBranch }}');
-    core.info('[js-dependency-update] : target branch is ${targetBranch}');
-    core.info('[js-dependency-update] : working directory is ${workingDir}');
+    core.info(`[js-dependency-update] : base branch is ${baseBranch}`);
+    core.info(`[js-dependency-update] : target branch is ${targetBranch}`);
+    core.info(`[js-dependency-update] : working directory is ${workingDir}`);
 
     await exec.exec('npm update', [], {
         ...commonExecOpts
@@ -48,18 +48,18 @@ async function run() {
 
     if (gitStatus.stdout.length > 0) {
         core.info('[js-dependency-update] : There are updates available!');
-        await exec.exec('git config --global user.name "gh-automation"');
-        await exec.exec('git config --global user.email "gh-automation@email.com"');
-        await exec.exec('git checkout -b ${targetBranch}', [], { 
+        await exec.exec(`git config --global user.name "gh-automation"`);
+        await exec.exec(`git config --global user.email "gh-automation@email.com"`);
+        await exec.exec(`git checkout -b ${targetBranch}`, [], { 
             ...commonExecOpts,
         });
-        await exec.exec('git add package.json package-lock.json', [], {
+        await exec.exec(`git add package.json package-lock.json`, [], {
             ...commonExecOpts,
         });
-        await exec.exec('git commit -m "chore: update dependencies', [], {
+        await exec.exec(`git commit -m "chore: update dependencies`, [], {
             ...commonExecOpts,
         });
-        await exec.exec('git push -u origin ${targetBranch} --force', [], {
+        await exec.exec(`git push -u origin ${targetBranch} --force`, [], {
             ...commonExecOpts,
         });
 
@@ -69,13 +69,13 @@ async function run() {
             await octokit.rest.pulls.create({
                 owner: github.context.repo.owner,
                 repo: github.context.repo.repo,
-                title: 'Update NPM dependencies',
-                body: 'This PR updates the NPM packages.',
+                title: `Update NPM dependencies`,
+                body: `This PR updates the NPM packages.`,
                 baseBranch: baseBranch,
                 headBranch: targetBranch
             });
         } catch (e) {
-            core.error(`[js-dependency-update] : Something went wrong while creating the PR. Check logs below.`);
+            core.error('[js-dependency-update] : Something went wrong while creating the PR. Check logs below.');
             core.setFailed(e.message);
             core.error(e);
         } 
