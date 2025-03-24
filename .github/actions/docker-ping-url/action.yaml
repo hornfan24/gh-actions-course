@@ -2,7 +2,7 @@ name: Ping URL
 description:  Ping URL until maximum attempts are exceeded.  IF result is not 200 until then, fails the action.
 
 inputs:
-  url: 
+  url:
     description: URL to ping
     required: true
   max_trials:
