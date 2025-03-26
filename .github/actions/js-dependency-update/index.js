@@ -71,9 +71,12 @@ async function run() {
         ...commonExecOpts
     });
 
+    let updatesAvailable = false;
+
     if (gitStatus.stdout.length > 0) {
+        updatesAvailable = true;
+
         logger.debug('There are updates available!');
-        
         logger.debug('Setting up git');
         await setupGit();
         
@@ -113,6 +116,8 @@ async function run() {
         logger.info('No updates available at this time.')
     }
 
+    logger.debug(`Setting updates-available output to ${updatesAvailable}`);
+    core.setOutput('updates-available', updatesAvailable);
 
     /*
     [DONE] 1. Parse inputs:
