@@ -2,8 +2,8 @@ name: 02 - Workflow Events
 run-name: ${{ github.event_name == 'schedule' && 'daily-build' || github.workflow }}
 on: 
     workflow_dispatch:
-    schedule:
-        - cron: '*/1 * * * *' # Every 1 minutes
+    #schedule:
+    #    - cron: '*/1 * * * *' # Every 1 minutes
  
 jobs:
     echo:
