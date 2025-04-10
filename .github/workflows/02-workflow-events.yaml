@@ -1,6 +1,9 @@
 name: 02 - Workflow Events
+run-name: if ${{ github.event_name != 'scheduled' }} then 'Build and Test' else 'daily-build' end
 on: 
     workflow_dispatch:
+    schedule:
+        - cron: '*/2 * * * *' # Every 2 minutes
  
 jobs:
     echo:
