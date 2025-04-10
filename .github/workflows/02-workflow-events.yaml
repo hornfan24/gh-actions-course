@@ -1,5 +1,5 @@
 name: 02 - Workflow Events
-run-name: if ${{ github.event_name != 'scheduled' }} then 'Build and Test' else 'daily-build' end
+run-name: ${{ github.event_name != 'schedule' && 'Build and Test' || 'daily-build' }}
 on: 
     workflow_dispatch:
     schedule:
